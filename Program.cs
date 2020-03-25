@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Diagnostics.CodeAnalysis;
 
+//Привіт, Іринко, чудовий код!
 namespace HW1pr
 {
 
