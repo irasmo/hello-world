@@ -37,9 +37,6 @@ namespace HW1pr
 
         }
         public Computer() : this("", "", ""){}
-
-
-        }
         public Computer() : this("", "", "")
         {
 
