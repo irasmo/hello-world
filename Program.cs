@@ -23,36 +23,51 @@ namespace HW1pr
    
     public class Computer : IPrintable, ICloneable
     {
+
         private string serial_numb;
         private string ip;
         private string producer;
+
 
         public Computer(string _serial_numb, string _ip, string _producer)
         {
             serial_numb = _serial_numb;
             ip = _ip;
             producer = _producer;
+
         }
         public Computer() : this("", "", ""){}
+
+
+        }
+        public Computer() : this("", "", "")
+        {
+
+        }
+
+
         public string Serial_numb
         {
             get { return serial_numb; }
             set { serial_numb = value; }
+
         }
         public string IP
         {
             get { return ip; }
             set { ip = value; }
+
         }
         public string Producer
         {
             get { return producer; }
             set { producer = value; }
+
         }
         public override string ToString()
         {
             return $"{serial_numb} {ip} {producer}";
-        }
+
         virtual public void Print()
         {
             Console.WriteLine($"{serial_numb} {ip} {producer}");
@@ -70,20 +85,36 @@ namespace HW1pr
         {
             get { return operation_syst; }
             set { operation_syst = value; }
+
         }
         public Personal() : base(){}
         public Personal(string _serial_numb, string _ip, string _producer, string _operation_syst) : base(_serial_numb, _ip, _producer)
         {
             operation_syst = _operation_syst;
+
+
+        }
+        public Personal() : base()
+        {
+
+        }
+        public Personal(string _serial_numb, string _ip, string _producer, string _operation_syst) : base(_serial_numb, _ip, _producer)
+        {
+            operation_syst = _operation_syst;
+
+
+
         }
         public override string ToString()
         {
             return base.ToString() + $" {operation_syst}";
+
         }
         public override void Print()
         {
             Console.WriteLine($"{Serial_numb} {IP} {Producer} {operation_syst}");
         }
+
         public int CompareTo(Personal other)
         {
             int compare = Producer.CompareTo(other.Producer);
@@ -99,13 +130,24 @@ namespace HW1pr
     }      
     public class Server : Computer, ICloneable
     {
+
         private int comp_num;
         public int Comp_num
         {
             get { return comp_num; }
             set { comp_num = value; }
+
         }
         public Server() : base(){}
+
+
+        }
+
+        public Server() : base()
+        {
+
+        }
+
         public Server(string _serial_numb, string _ip, string _producer, int _comp_num) : base(_serial_numb, _ip, _producer)
         {
             comp_num = _comp_num;
@@ -113,11 +155,20 @@ namespace HW1pr
         public override string ToString()
         {
             return base.ToString() + $" {comp_num}";
+
+
         }
+        //public override void Print()
+        //{
+        //    Console.WriteLine($"{Serial_numb} {IP} {Producer} {comp_num}");
+        //}
+
         public override object Clone()
         {
             return new  Server { Serial_numb = Serial_numb, IP = IP, Producer = Producer, Comp_num = Comp_num };
         }
+
+
     }
     class Serial_num_Comparer : IComparer<Server>
     {
@@ -150,6 +201,7 @@ namespace HW1pr
 
     class Comps : IEnumerable
     {
+
         public Computer[] mass = new Computer[4];        
         public IEnumerator GetEnumerator()
         {
@@ -175,6 +227,7 @@ namespace HW1pr
                 default:
                     throw new ArgumentException("not a computer");
             }
+
         }
     }
   
@@ -191,7 +244,13 @@ namespace HW1pr
             else
             {
                 List<Computer> computers = new List<Computer>();
+
                 string[] lis = File.ReadAllLines(path);
+
+                
+                string[] lis = File.ReadAllLines(path);
+                
+
                 foreach(string line in lis)
                 {
                     string[] fields = line.Split();
@@ -291,7 +350,7 @@ namespace HW1pr
                     Console.WriteLine(item);
                 }
                 ie.Reset();
-            }
+
         }
     }
 }
