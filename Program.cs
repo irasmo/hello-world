@@ -36,10 +36,15 @@ namespace HW1pr
             producer = _producer;
 
         }
+        public Computer() : this("", "", ""){}
+
+
+        }
         public Computer() : this("", "", "")
         {
 
         }
+
 
         public string Serial_numb
         {
@@ -63,8 +68,6 @@ namespace HW1pr
         {
             return $"{serial_numb} {ip} {producer}";
 
-        }
-
         virtual public void Print()
         {
             Console.WriteLine($"{serial_numb} {ip} {producer}");
@@ -84,6 +87,13 @@ namespace HW1pr
             set { operation_syst = value; }
 
         }
+        public Personal() : base(){}
+        public Personal(string _serial_numb, string _ip, string _producer, string _operation_syst) : base(_serial_numb, _ip, _producer)
+        {
+            operation_syst = _operation_syst;
+
+
+        }
         public Personal() : base()
         {
 
@@ -91,6 +101,7 @@ namespace HW1pr
         public Personal(string _serial_numb, string _ip, string _producer, string _operation_syst) : base(_serial_numb, _ip, _producer)
         {
             operation_syst = _operation_syst;
+
 
 
         }
@@ -127,11 +138,16 @@ namespace HW1pr
             set { comp_num = value; }
 
         }
+        public Server() : base(){}
+
+
+        }
 
         public Server() : base()
         {
 
         }
+
         public Server(string _serial_numb, string _ip, string _producer, int _comp_num) : base(_serial_numb, _ip, _producer)
         {
             comp_num = _comp_num;
@@ -140,15 +156,18 @@ namespace HW1pr
         {
             return base.ToString() + $" {comp_num}";
 
+
         }
         //public override void Print()
         //{
         //    Console.WriteLine($"{Serial_numb} {IP} {Producer} {comp_num}");
         //}
+
         public override object Clone()
         {
             return new  Server { Serial_numb = Serial_numb, IP = IP, Producer = Producer, Comp_num = Comp_num };
         }
+
 
     }
     class Serial_num_Comparer : IComparer<Server>
@@ -225,9 +244,13 @@ namespace HW1pr
             else
             {
                 List<Computer> computers = new List<Computer>();
+
+                string[] lis = File.ReadAllLines(path);
+
                 
                 string[] lis = File.ReadAllLines(path);
                 
+
                 foreach(string line in lis)
                 {
                     string[] fields = line.Split();
@@ -327,9 +350,6 @@ namespace HW1pr
                     Console.WriteLine(item);
                 }
                 ie.Reset();
-
-
-            }
 
         }
     }
